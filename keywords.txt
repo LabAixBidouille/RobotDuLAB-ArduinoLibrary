@@ -1,0 +1,41 @@
+#######################################
+# Syntax Coloring Map For RobotDuLAB Library
+####################################### 
+# Class
+#######################################
+
+RobotDuLAB	KEYWORD1
+
+#######################################
+# Methods and Functions 
+#######################################	
+
+begin	KEYWORD2
+Arreter	KEYWORD2
+Avancer	KEYWORD2
+Reculer	KEYWORD2
+TournerAGauche	KEYWORD2
+TournerADroite	KEYWORD2
+AnimerAnneauLed	KEYWORD2
+getDistanceObstacle	KEYWORD2
+
+#######################################
+# Constants
+#######################################
+
+NOIR      LITERAL1
+ROUGE     LITERAL1
+VERT      LITERAL1
+MAGENTA   LITERAL1
+BLEU      LITERAL1
+BLANC     LITERAL1
+TURQUOISE LITERAL1
+JAUNE     LITERAL1
+VIOLET    LITERAL1
+INVERSE  LITERAL1
+ARRET    LITERAL1
+NORMAL   LITERAL1
+COULEUR              	LITERAL1
+ARC_EN_CIEL          	LITERAL1
+ARC_EN_CIEL_CYCLIQUE 	LITERAL1
+COULEUR_CYCLIQUE     	LITERAL1
