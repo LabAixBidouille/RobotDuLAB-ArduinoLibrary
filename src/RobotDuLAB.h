@@ -78,8 +78,11 @@ typedef enum
 
  
 class RobotDuLAB {
-        const int triggerPin =  2; // broche trig du capteur US HC-SR04
-        const int echoPin =  4; // broche echo du capteur US HC-SR04
+        const int triggerPin; // broche trig du capteur US HC-SR04
+        const int echoPin; // broche echo du capteur US HC-SR04
+        const int roueDroitePin; 
+        const int roueGauchePin;
+        const int anneauDeLedPin;
 
         Servo roueDroite;
         Servo roueGauche;
@@ -92,9 +95,18 @@ class RobotDuLAB {
         RobotDuLAB(const int triggerPin, const int echoPin, const int roueDroitePin, 
                     const int roueGauchePin, const int anneauDeLedPin):triggerPin(triggerPin), 
                                                                         echoPin(echoPin),
+                                                                        roueDroitePin(roueDroitePin),
+                                                                        roueGauchePin(roueGauchePin),
+                                                                        anneauDeLedPin(anneauDeLedPin),
                                                                         roueDroite(), 
                                                                         roueGauche(), 
                                                                         anneauDeLed(NB_LED, anneauDeLedPin, NEO_GRB + NEO_KHZ800) {
+
+        }
+
+        virtual ~RobotDuLAB() {}
+
+        void begin(){
             // Initialisation du HC-SR04
             pinMode (triggerPin,OUTPUT); 
             digitalWrite(triggerPin, LOW); 
@@ -106,12 +118,6 @@ class RobotDuLAB {
             
             //Initialisation Anneau de LED     
             anneauDeLed.begin();
-        }
-
-        virtual ~RobotDuLAB() {}
-
-        void begin(){
-          
         }
 
         void Arreter() {
@@ -126,7 +132,7 @@ class RobotDuLAB {
 
         void Reculer() {
             roueDroite.write(INVERSE);
-            roueGauche.write(ARRET);
+            roueGauche.write(NORMAL);
         }
 
         void TournerAGauche() {
