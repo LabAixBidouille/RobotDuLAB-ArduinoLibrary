@@ -23,6 +23,8 @@ Pour utiliser la bibliothèque, il suffit d'inclure le fichier `RobotDuLAB.h`, d
 
 Voici un exemple permettant de programmer le robot pour qu'il évite les obstacles :
 ```cpp
+#include <Servo.h>
+#include <Adafruit_NeoPixel.h>
 #include <RobotDuLAB.h>
 
 #define TRIGGER_PIN 2 // broche trig du capteur US HC-SR04

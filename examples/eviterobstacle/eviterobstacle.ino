@@ -1,3 +1,6 @@
+#include <Servo.h>
+#include <Adafruit_NeoPixel.h>
+
 #include <RobotDuLAB.h>
 
 #define TRIGGER_PIN 2 // broche trig du capteur US HC-SR04
@@ -20,6 +23,6 @@ void loop() {
     delay(1*1000);
     
     robotDuLAB.TournerAGauche();
-    delay(1*1000);
   }
+  delay(1*1000);
 }
