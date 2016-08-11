@@ -224,7 +224,7 @@ class RobotDuLAB {
         void rainbowCycle(uint8_t wait) {
             uint16_t i, j;
 
-            for(j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
+            for(j=0; j<256; j++) { 
                 for(i=0; i< anneauDeLed.numPixels(); i++) {
                     anneauDeLed.setPixelColor(i, Wheel(((i * 256 / anneauDeLed.numPixels()) + j) & 255));
                 }
