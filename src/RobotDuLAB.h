@@ -111,41 +111,38 @@ class RobotDuLAB {
             pinMode (triggerPin,OUTPUT); 
             digitalWrite(triggerPin, LOW); 
             pinMode(echoPin, INPUT);
+            delay(100);
 
-            // Initialisation servos
-            roueGauche.attach(roueGauchePin);
-            roueDroite.attach(roueDroitePin);
-            
             //Initialisation Anneau de LED     
             anneauDeLed.begin();
+            delay(100);
+            eteindreAnneauDeLed();
+            
         }
 
         void Arreter() {
-            roueDroite.write(ARRET);
-            roueGauche.write(ARRET);
+            MettreEnMouvement(ARRET, ARRET);
         }
 
-        void Avancer() {
-            roueDroite.write(NORMAL);
-            roueGauche.write(INVERSE);
+        void Avancer() {       
+            MettreEnMouvement(NORMAL, INVERSE);
         }
 
         void Reculer() {
-            roueDroite.write(INVERSE);
-            roueGauche.write(NORMAL);
+            MettreEnMouvement(INVERSE, NORMAL);
         }
 
         void TournerAGauche() {
-            roueDroite.write(NORMAL);
-            roueGauche.write(NORMAL);
+            MettreEnMouvement(NORMAL, NORMAL);
         }
 
         void TournerADroite() {
-            roueDroite.write(INVERSE);
-            roueGauche.write(INVERSE);
+            MettreEnMouvement(INVERSE, INVERSE);
         }
 
         void AnimerAnneauLed(choix_animation_anneau_led_t choix, couleur_index_t couleur){
+            roueGauche.detach();
+            roueDroite.detach();
             switch (choix){
                 case COULEUR :
                     anneauDeLed.setPixelColor(14, couleurs[couleur]);
@@ -175,6 +172,25 @@ class RobotDuLAB {
         }
 
     private:
+        void MettreEnMouvement(sens_rotation_t sensRoueDroite, sens_rotation_t sensRoueGauche) {
+            if(!roueDroite.attached())
+                roueDroite.attach(roueDroitePin);
+            if(!roueGauche.attached())
+                roueGauche.attach(roueGauchePin);
+
+            roueDroite.write(sensRoueDroite);
+            roueGauche.write(sensRoueGauche);
+        }
+
+        void eteindreAnneauDeLed(){
+            for (int i = 0; i < NB_LED; ++i)
+            {
+                anneauDeLed.setPixelColor(i, couleurs[NOIR]);
+            }
+            anneauDeLed.show();
+            
+        }
+
         long microsecondsEnCentimetres(long microseconds)
         {
             // The speed of sound is 340 m/s or 29 microseconds per centimeter.
